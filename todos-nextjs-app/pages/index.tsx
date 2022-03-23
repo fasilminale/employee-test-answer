@@ -52,12 +52,10 @@ function Homepage(): JSX.Element {
   // TODO: update new todos order on server
   const handleOnDragEnd = (result) => {
     if (!result.destination) return
-
-    const items = Array.from(todos)
-    const [reorderedItem] = items.splice(result.source.index, 1)
-    items.splice(result.destination.index, 0, reorderedItem)
-
-    setTodos(items)
+    axios({
+      url: '/api/todos/update-order/' + result.source.index,
+      method: 'POST',
+    }).then(reloadList)
   }
 
   return (

@@ -24,17 +24,23 @@ export class TodosController {
 
   //TODO: Implement get all
   getAll(): IControllerResult<Todo[]> {
-    return null;
+    return newControllerData(this.todosDal.getAll());
   }
 
   //TODO: Implement update
   update(payload: ITodoPayload, id: string): IControllerResult<Todo> {
-    return null;
+
+    return newControllerData(this.todosDal.edit(payload, id));
   }
 
   //TODO: Implement delete
   delete(id: string): IControllerResult<String> {
-    return null;
+    this.todosDal.delete(id)
+    return newControllerData(id);
+  }
+
+  updateOrder(index: number): IControllerResult<Todo> {
+    return newControllerData(this.todosDal.updateOrder(index));
   }
 }
 

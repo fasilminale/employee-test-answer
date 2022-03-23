@@ -6,7 +6,11 @@ export default function Form({ reloadList }) {
   const [text, setText] = useState('')
 
   // TODO: implement todo creation
-  const createTodo = (event) => {}
+  const createTodo = async (event) => {
+    event.preventDefault()
+    axios.post('/api/todos/', { text }).then(reloadList)
+    setText('')
+  }
 
   return (
     <form
@@ -21,6 +25,7 @@ export default function Form({ reloadList }) {
         value={text}
         onChange={(event) => setText(event.target.value)}
       />
+      <button type="submit">Create</button>
     </form>
   )
 }

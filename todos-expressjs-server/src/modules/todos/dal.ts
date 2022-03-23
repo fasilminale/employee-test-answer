@@ -43,6 +43,15 @@ export class TodosDal {
   delete(id: string) {
     _.remove(this.todosArray, { _id: id });
   }
+
+  updateOrder(index:number){
+    const items = Array.from(this.todosArray)
+    const [reorderedItem] = items.splice(index, 1)
+    items.splice(index, 0, reorderedItem)
+    this.todosArray = items
+    return reorderedItem
+
+  }
 }
 
 export const todosDal = new TodosDal(todosArray);
